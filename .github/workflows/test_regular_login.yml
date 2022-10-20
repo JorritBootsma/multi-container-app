@@ -14,4 +14,7 @@ jobs:
         creds: '{"clientId":"${{ secrets.CLIENT_ID }}","clientSecret":"${{ secrets.CLIENT_SECRET }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.TENANT_ID }}"}'
     
     - run: |
+        az webapp list
+        
+    - run: |
         az webapp list --query "[?state=='Running']"
