@@ -1,6 +1,6 @@
 
 
-name: Azure Regular Login
+name: Azure Regular Login - New Creds
 
 on:
   # Allows you to run this workflow manually from the Actions tab
