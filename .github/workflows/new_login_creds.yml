@@ -1,0 +1,22 @@
+
+
+name: Azure Regular Login
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        
+    - run: |
+        az webapp list
+        
+    - run: |
+        az webapp list --query "[?state=='Running']"
