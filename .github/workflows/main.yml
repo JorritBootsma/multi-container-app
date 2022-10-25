@@ -96,6 +96,11 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
 # REPLACE BELOW WITH secrets.AZURE_CREDS code snippet
+    steps:
+      - name: Azure Login with secrets.AZURE_CREDENTIALS
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 #     steps:
 #       - name: 'Az CLI login'
 #         uses: azure/login@v1
@@ -104,7 +109,7 @@ jobs:
 #           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
 #           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-# FROM https://github.com/Azure/webapps-deploy/issues/129
+# FROM https://github.com/Azure/webapps-deploy/issues/129 MERGE THIS WITH THE DEPLOY-TO-WEBAPP STEP BELOW?
 # - name: Update Azure config
 #   uses: azure/webapps-deploy@v2
 #   with:
