@@ -115,7 +115,14 @@ jobs:
 #   with:
 #     app-name: 'myApp'
 #     configuration-file: compose.yml
-    
+
+# FROM https://github.com/BALAGA-GAYATRI/python_container_App/blob/main/.github/workflows/deploy.yml MERGE THIS WITH THE DEPLOY-TO-WEBAPP STEP BELOW?
+#     - uses: azure/webapps-deploy@users/balaga-gayatri/multicontainer-support
+#       with:
+#         app-name: ${{ env.AZURE_WEBAPP_NAME }} 
+# #         images: ${{ env.CONTAINER_REGISTRY }}/containerwebapp/djangoapp:latest  # This is defined in the docker-compose.yml file
+#         configuration-file: ./.github/workflows/docker-compose.yml
+
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
