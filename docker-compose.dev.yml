@@ -2,18 +2,14 @@ version: '3.8'
 
 services:
   backend:
-    build:  # Change `build` to `image` in order to deploy to Azure Web Apps. Building of image happens in Github Action flow
-      context: ./backend
-      dockerfile: ./Dockerfile.dev
+    image: jorritboot/mc_fastapi_server:latest
     ports:
     - 2000:2000
     volumes:
       - ./backend:/app
 
   frontend:
-    build:  # Change `build` to `image` in order to deploy to Azure Web Apps. Building of image happens in Github Action flow
-      context: ./frontend
-      dockerfile: ./Dockerfile.dev
+    image: jorritboot/mc_streamlit-ui:latest
     ports:
     - 8000:8501
     volumes:
