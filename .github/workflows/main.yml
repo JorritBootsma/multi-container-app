@@ -95,8 +95,8 @@ jobs:
       name: 'production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
-# REPLACE BELOW WITH secrets.AZURE_CREDS code snippet
     steps:
+      # This step logs into Azure using a Service Principal Name (SPN) as an alternative to the "Publish Profile"
       - name: Azure Login with secrets.AZURE_CREDENTIALS
         uses: azure/login@v1
         with:
