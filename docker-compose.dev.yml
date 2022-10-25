@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   backend:
-    build:
+    build:  # Change `build` to `image` in order to deploy to Azure Web Apps. Building of image happens in Github Action flow
       context: ./backend
       dockerfile: ./Dockerfile.dev
     ports:
@@ -11,7 +11,7 @@ services:
       - ./backend:/app
 
   frontend:
-    build:
+    build:  # Change `build` to `image` in order to deploy to Azure Web Apps. Building of image happens in Github Action flow
       context: ./frontend
       dockerfile: ./Dockerfile.dev
     ports:
