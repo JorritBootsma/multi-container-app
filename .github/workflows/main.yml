@@ -4,16 +4,11 @@ name: CI to Docker Hub & Deploy
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
+  # Triggers the workflow on newly pushed tags of specific format
   push:
-#    branches:
-#     - "main"
     tags:
       - "v*.*.*"
       - "!v*.*.*-*"
-#  pull_request:
-#    branches:
-#      - "main"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -22,10 +17,7 @@ on:
 jobs: 
   build-and-deploy:
     runs-on: ubuntu-latest
-
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
+    
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
@@ -66,7 +58,8 @@ jobs:
           context: ./backend
           file: ./backend/Dockerfile.dev
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/mc_fastapi_server:${{ github.sha }}
+#           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/mc_fastapi_server:${{ github.sha }}
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/mc_fastapi_server:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
 
@@ -78,7 +71,8 @@ jobs:
           context: ./frontend
           file: ./frontend/Dockerfile.dev
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/mc_streamlit-ui:${{ github.sha }}
+#           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/mc_streamlit-ui:${{ github.sha }}
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/mc_streamlit-ui:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
 
@@ -127,11 +121,10 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2  # This action triggers an App restart in Azure App Service
         with:
-          app-name: 'docker-tutorial-python'
+          app-name: 'multi-container-app'
           slot-name: 'production'
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          images: ${{ secrets.DOCKER_HUB_USERNAME }}/fastapi_server:${{ github.sha }}
-
+          configuration-file: docker-compose.dev.yml
+          
       # Echo the results
       - name: URL
         run: |
