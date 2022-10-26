@@ -125,7 +125,7 @@ jobs:
         with:
           app-name: 'multi-container-app'
           slot-name: 'production'
-          configuration-file: docker-compose.dev.yml
+          configuration-file: 'docker-compose.dev.yml'
           
       # Echo the results
       - name: URL
