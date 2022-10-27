@@ -1,0 +1,69 @@
+
+
+# This is a basic workflow to help you get started with Actions
+
+name: Deploy to Azure Web Service
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on newly pushed tags of specific format
+  push:
+#     branches:
+#       - "main"
+    tags:
+      - "v*.*.*"
+      - "!v*.*.*-*"
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+
+  # This workflow contains a single job called "build"
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: 'production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+      # This step logs into Azure using a Service Principal Name (SPN) as an alternative to the "Publish Profile"
+      - name: Azure Login with secrets.AZURE_CREDENTIALS
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+#     steps:
+#       - name: 'Az CLI login'
+#         uses: azure/login@v1
+#         with:
+#           client-id: ${{ secrets.AZURE_CLIENT_ID }}
+#           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+#           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+# FROM https://github.com/Azure/webapps-deploy/issues/129 MERGE THIS WITH THE DEPLOY-TO-WEBAPP STEP BELOW?
+# - name: Update Azure config
+#   uses: azure/webapps-deploy@v2
+#   with:
+#     app-name: 'myApp'
+#     configuration-file: compose.yml
+
+# FROM https://github.com/BALAGA-GAYATRI/python_container_App/blob/main/.github/workflows/deploy.yml MERGE THIS WITH THE DEPLOY-TO-WEBAPP STEP BELOW?
+#     - uses: azure/webapps-deploy@users/balaga-gayatri/multicontainer-support
+#       with:
+#         app-name: ${{ env.AZURE_WEBAPP_NAME }}
+# #         images: ${{ env.CONTAINER_REGISTRY }}/containerwebapp/djangoapp:latest  # This is defined in the docker-compose.yml file
+#         configuration-file: ./.github/workflows/docker-compose.yml
+
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2  # This action triggers an App restart in Azure App Service
+        with:
+          app-name: 'multi-container-app'
+          configuration-file: ./docker-compose.yml
+
+      # Echo the results
+      - name: URL
+        run: |
+          echo ${{ steps.deploy-to-webapp.outputs }}
+          echo ${{ steps.deploy-to-webapp.outputs.webapp-url }}
