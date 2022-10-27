@@ -31,7 +31,7 @@ def test():
 
 @app.get("/version_number")
 def version_number():
-    return {"response": "v0.3.3"}
+    return {"response": "v0.1.0-multi-container-app"}
 
 
 @app.get("/streamlit_greeting")
