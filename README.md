@@ -1,4 +1,4 @@
-# docker-tutorial
+# multi-container-app-tutorial
 Dockerizing a Python application using Github Actions and deploying to Azure App Service. 
 The application consists of a simple FastAPI backend server and Streamlit frontend. 
 
