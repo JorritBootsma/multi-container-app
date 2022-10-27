@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  backend:
+    image: jorritboot/mc_fastapi_server:latest
+    ports:
+    - 2000:2000
+    volumes:
+      - ./backend:/app
+
+  frontend:
+    image: jorritboot/mc_streamlit-ui:latest
+    ports:
+    - 8000:8501
+    volumes:
+      - ./frontend:/app
