@@ -63,7 +63,7 @@ jobs:
           configuration-file: 'docker-compose.yml'
           images: |
             ${{ secrets.DOCKER_HUB_USERNAME }}/mc_streamlit-ui:${{ github.sha }}
-            ${{ secrets.DOCKER_HUB_USERNAME }}/mc_streamlit-ui:${{ github.sha }}
+            ${{ secrets.DOCKER_HUB_USERNAME }}/mc_fastapi_server:${{ github.sha }}
 
       # Echo the results
       - name: URL
