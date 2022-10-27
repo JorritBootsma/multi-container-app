@@ -60,7 +60,10 @@ jobs:
         uses: azure/webapps-deploy@v2  # This action triggers an App restart in Azure App Service
         with:
           app-name: 'multi-container-app'
-          configuration-file: docker-compose-wrong.yml
+#          configuration-file: docker-compose-wrong.yml
+          images: |
+            jorritboot/mc_streamlit-ui:latest
+            jorritboot/mc_fastapi_server:latest
 
       # Echo the results
       - name: URL
