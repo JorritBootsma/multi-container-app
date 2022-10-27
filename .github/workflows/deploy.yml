@@ -61,9 +61,9 @@ jobs:
         with:
           app-name: 'multi-container-app'
           configuration-file: 'docker-compose.yml'
-#          images: |
-#            jorritboot/mc_streamlit-ui:latest
-#            jorritboot/mc_fastapi_server:latest
+          images: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/mc_streamlit-ui:${{ github.sha }}
+            ${{ secrets.DOCKER_HUB_USERNAME }}/mc_streamlit-ui:${{ github.sha }}
 
       # Echo the results
       - name: URL
