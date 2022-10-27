@@ -57,8 +57,8 @@ jobs:
           context: ./backend
           file: ./backend/Dockerfile.dev
           push: true
-#           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/mc_fastapi_server:${{ github.sha }}
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/mc_fastapi_server:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/mc_fastapi_server:${{ github.sha }}
+#          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/mc_fastapi_server:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
 
@@ -70,8 +70,8 @@ jobs:
           context: ./frontend
           file: ./frontend/Dockerfile.dev
           push: true
-#           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/mc_streamlit-ui:${{ github.sha }}
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/mc_streamlit-ui:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/mc_streamlit-ui:${{ github.sha }}
+#          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/mc_streamlit-ui:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
 
