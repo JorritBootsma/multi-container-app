@@ -60,7 +60,7 @@ jobs:
         uses: azure/webapps-deploy@v2  # This action triggers an App restart in Azure App Service
         with:
           app-name: 'multi-container-app'
-          configuration-file: ./.github/workflows/docker-compose.yml
+          configuration-file: docker-compose.yml
 
       # Echo the results
       - name: URL
