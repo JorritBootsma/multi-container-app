@@ -4,10 +4,6 @@
 name: Testing Python backend package
 
 on:
-#  push:
-#    branches: [ $default-branch ]
-#  pull_request:
-#    branches: [ $default-branch ]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 

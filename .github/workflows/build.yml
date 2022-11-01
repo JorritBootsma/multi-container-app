@@ -9,14 +9,6 @@ name: Building & Pushing images to Docker Hub
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on newly pushed tags of specific format
-  push:
-#     branches:
-#       - "main"
-    tags:
-      - "v*.*.*"
-      - "!v*.*.*-*"
-
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
