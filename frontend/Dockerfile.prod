@@ -12,7 +12,7 @@ RUN pip3 install -v -r requirements.txt
 COPY . .
 
 EXPOSE 8501
-ENV TARGET_BASE_URL="https://docker-tutorial-python.azurewebsites.net/"
+ENV TARGET_BASE_URL="http://backend:8080/"
 
 # For Streamlit:
 CMD ["streamlit", "run", "streamlit_app.py"]
