@@ -33,7 +33,7 @@ def test():
 
 @app.get("/version_number")
 def version_number():
-    return {"response": "v1.0.0"}
+    return {"response": "v1.0.1"}
 
 
 @app.get("/streamlit_greeting")
