@@ -47,6 +47,6 @@ def get_farewell(age: int):
 
 
 if __name__ == "__main__":
-    print(validate_integer_input("5"))
-    print(validate_integer_input("jorrit"))
+    print(validate_integer_input("5", "age"))
+    print(validate_integer_input("jorrit", "age"))
     print(get_greeting(5))
