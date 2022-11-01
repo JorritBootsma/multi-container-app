@@ -38,7 +38,7 @@ def version_number():
 
 @app.get("/streamlit_greeting")
 def streamlit_greeting(name: str, age: Union[str, int]):
-    valid, error_message = validate_integer_input(age)
+    valid, error_message = validate_integer_input(age, "age")
     if not valid:
         return {"response": error_message}
 
@@ -48,7 +48,7 @@ def streamlit_greeting(name: str, age: Union[str, int]):
 
 @app.get("/streamlit_goodbye")
 def streamlit_farewell(name: str, age: Union[str, int]):
-    valid, error_message = validate_integer_input(age)
+    valid, error_message = validate_integer_input(age, "age")
     if not valid:
         return {"response": error_message}
 
