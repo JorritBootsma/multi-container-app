@@ -1,4 +1,6 @@
-
+# This workflow runs formatting checks using Black, python tests using pytest and it
+# builds and pushes docker images to the respective frontend and backend repositories in
+# Docker Hub.
 
 name: All-encompassing workflow
 
