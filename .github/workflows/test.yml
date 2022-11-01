@@ -29,6 +29,7 @@ jobs:
       with:
         options: "--check --verbose"
         src: "./backend"
+        version: "22.3.0"
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
       with:
