@@ -2,7 +2,8 @@
 # corresponding Dockerfiles. After building, the images are pushed to Docker Hub
 # repositories. On receiving a new image, these repositories send a POST request to
 # the Azure Webhook URL, to inform Azure the application needs to be restarted using the
-# newly pushed images.
+# newly pushed images. Azure App Service will use the docker-compose configuration file
+# to take care of the configuration of the containers.
 
 name: Building & Pushing images to Docker Hub
 
