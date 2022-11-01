@@ -1,7 +1,9 @@
 from typing import Union
 from fastapi import FastAPI
 
-app = FastAPI()
+from functions import get_greeting, get_farewell, validate_integer_input
+
+app = FastAPI(debug=True)
 
 
 @app.get("/")
@@ -36,36 +38,22 @@ def version_number():
 
 @app.get("/streamlit_greeting")
 def streamlit_greeting(name: str, age: Union[str, int]):
-    greeting = ""
-    age = int(age)
+    valid, error_message = validate_integer_input(age)
+    if not valid:
+        return {"response": error_message}
 
-    if age < 5:
-        greeting = "TA-DA"
-    elif 5 <= age < 12:
-        greeting = "Hoi"
-    elif 12 <= age < 18:
-        greeting = "Yo"
-    elif 18 <= age < 30:
-        greeting = "Hallo"
-    elif age > 30:
-        greeting = "Goedendag"
+    greeting = get_greeting(int(age))
     return {"response": f"{greeting} {name}"}
 
 
 @app.get("/streamlit_goodbye")
 def streamlit_farewell(name: str, age: Union[str, int]):
-    farewell = ""
-    age = int(age)
+    valid, error_message = validate_integer_input(age)
+    if not valid:
+        return {"response": error_message}
 
-    if age < 5:
-        farewell = "TA-DA"
-    elif 5 <= age < 18:
-        farewell = "Doei"
-    elif 18 <= age < 30:
-        farewell = "De ballen"
-    elif age > 30:
-        farewell = "Tot ziens"
-    return {"response": f"{farewell} {name}"}
+    farewell_ = get_farewell(int(age))
+    return {"response": f"{farewell_} {name}"}
 
 
 @app.get("/dummy_functionality")
