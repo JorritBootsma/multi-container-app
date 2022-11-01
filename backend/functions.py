@@ -1,9 +1,12 @@
 # This file contains some general functions used by the backend script.
 
+
 def validate_integer_input(potential_integer, origin):
     """This functions validates if input can be converted to an integer. """
-    error_message = f"Couldn't convert the `{origin}` input to an integer. " \
-                    "Please insert a valid number"
+    error_message = (
+        f"Couldn't convert the `{origin}` input to an integer. "
+        "Please insert a valid number"
+    )
     try:
         _ = int(potential_integer)
         valid = True
@@ -44,6 +47,6 @@ def get_farewell(age: int):
 
 
 if __name__ == "__main__":
-    print(validate_integer_input('5'))
-    print(validate_integer_input('jorrit'))
+    print(validate_integer_input("5"))
+    print(validate_integer_input("jorrit"))
     print(get_greeting(5))
