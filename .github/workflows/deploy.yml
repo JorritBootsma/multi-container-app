@@ -1,19 +1,12 @@
+# This workflow should update the Azure App Service application, given particular images
+# in Docker Hub. It currently fails to detect the docker-compose.yml, however. The
+# updating of the application after building and pushing new images to Docker Hub is now
+# taken care of by a custom Webhook request send from Docker Hub to Azure App Service.
 
-
-# This is a basic workflow to help you get started with Actions
-
-name: Deploy to Azure Web Service
+name: Deploy to Azure App Service
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on newly pushed tags of specific format
-  push:
-#     branches:
-#       - "main"
-    tags:
-      - "v*.*.*"
-      - "!v*.*.*-*"
-
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 

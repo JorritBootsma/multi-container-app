@@ -1,4 +1,8 @@
-# This is a basic workflow to help you get started with Actions
+# This workflow builds Docker images from the frontend and backend contexts and the
+# corresponding Dockerfiles. After building, the images are pushed to Docker Hub
+# repositories. On receiving a new image, these repositories send a POST request to
+# the Azure Webhook URL, to inform Azure the application needs to be restarted using the
+# newly pushed images.
 
 name: Building & Pushing images to Docker Hub
 
