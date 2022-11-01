@@ -1,39 +1,11 @@
 version: '3.8'
 
 services:
-  backend:
-    image: jorritboot/mc_fastapi_server:latest
-    ports:
-    - 2000:2000
-    volumes:
-      - ./backend:/app
-
   frontend:
     image: jorritboot/mc_streamlit-ui:latest
     ports:
-    - 8000:8501
-    volumes:
-      - ./frontend:/app
-
-
-# THE BELOW WORKS, I.E. WHEN BUILDING THE DOCKER IMAGES WITHIN DOCKER-COMPOSE ALL WORKS WELL
-#version: '3.8'
-
-#services:
-#  backend:
-#    build:
-#      context: ./backend
-#      dockerfile: ./Dockerfile.dev
-#    ports:
-#    - 2000:2000
-#    volumes:
-#      - ./backend:/app
-#
-#  frontend:
-#    build:
-#      context: ./frontend
-#      dockerfile: ./Dockerfile.dev
-#    ports:
-#    - 8000:8501
-#    volumes:
-#      - ./frontend:/app
+    - 80:8501
+  backend:
+    image: jorritboot/mc_fastapi_server:latest
+    ports:
+      - 2000:2000
