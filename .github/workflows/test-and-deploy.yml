@@ -1,18 +1,20 @@
 # This workflow runs formatting checks using Black, python tests using pytest and it
 # builds and pushes docker images to the respective frontend and backend repositories in
 # Docker Hub.
+# This workflow is triggered when a new Tag of format v*.*.*, i.e. v1.0.10,
+# is pushed to GitHub.
 
 name: All-encompassing workflow
 
 # Controls when the workflow will run
 on:
-#  # Triggers the workflow on newly pushed tags of specific format
-#  push:
-#    branches:
-#      - "main"
-#    tags:
-#      - "v*.*.*"
-#      - "!v*.*.*-*"
+  # Triggers the workflow on newly pushed tags of specific format
+  push:
+    branches:
+      - "main"
+    tags:
+      - "v*.*.*"
+      - "!v*.*.*-*"
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
