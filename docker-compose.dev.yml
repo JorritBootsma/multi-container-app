@@ -1,0 +1,14 @@
+# This file is not used as the Docker Container composition is happening in Azure App
+# Services. The contents of this file is copy-pasted to the Deployment Center of Azure
+# App Services.
+version: '3.8'
+
+services:
+  frontend:
+    image: jorritboot/mc_streamlit-ui:latest
+    ports:
+    - 80:8501
+  backend:
+    image: jorritboot/mc_fastapi_server:latest
+    ports:
+      - 2000:2000

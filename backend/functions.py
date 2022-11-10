@@ -1,6 +1,5 @@
 # This file contains some general functions used by the backend script.
 
-
 def validate_integer_input(potential_integer, origin):
     """This functions validates if input can be converted to an integer."""
     error_message = (

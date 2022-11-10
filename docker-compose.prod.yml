@@ -8,4 +8,4 @@ services:
   backend:
     image: jorritboot/mc_fastapi_server:latest
     ports:
-      - 2000:2000
+      - 8080:8080
