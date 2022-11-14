@@ -11,6 +11,8 @@ services:
     - 2000:2000
     volumes:
       - ./backend:/app
+    depends_on:
+      - db
 
   frontend:
     build:
@@ -20,3 +22,16 @@ services:
     - 8000:8501
     volumes:
       - ./frontend:/app
+    depends_on:
+      - backend
+
+  db:
+    image: postgres:13.3
+    environment:
+      POSTGRES_PASSWORD: dummy_password
+      POSTGRES_DB: dummy_db
+      POSTGRES_USER: dummy_user
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgres:/docker-entrypoint-initdb.d

@@ -2,7 +2,8 @@ import os
 import requests
 import streamlit as st
 
-# This environment variable is set in the frontend Dockerfile
+# This environment variable is set in the frontend Dockerfile. It should correspond with
+# the port set in the backend Dockerfile.
 BASE_URL = os.environ["TARGET_BASE_URL"]
 
 st.title("Fill in your details & Be Greeted!")
@@ -34,3 +35,19 @@ if st.button("Give me the version number!"):
         st.write(dict(response.headers))
         st.write("JSON Response:")
         st.write(response.json())
+
+st.write('---')
+
+if st.button("Persist my details in the database!"):
+    url_suffix = "persist_in_db"
+    response = requests.post(BASE_URL+url_suffix, params={"name": name, "age": age})
+    st.write(response.json())
+    if response.json()["response"] is True:
+        st.success("Persisted in database!")
+    else:
+        st.error("Something went wrong!")
+
+if st.button("Request information from database!"):
+    url_suffix = "get_all_users"
+    response = requests.get(BASE_URL+url_suffix)
+    st.write(response.json())

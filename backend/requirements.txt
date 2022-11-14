@@ -1,2 +1,4 @@
-fastapi[all]
-flask==2.2.2
+fastapi==0.85.2
+uvicorn==0.18.3
+sqlalchemy==1.4.43
+psycopg2-binary==2.9.5

@@ -1,9 +1,29 @@
 from typing import Union
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI
 
+import crud
+import models
+import schemas
+from database import Session, engine
 from functions import get_greeting, get_farewell, validate_integer_input
 
+# Drop all tables if present
+# print(Base.metadata.tables.keys())
+# Base.metadata.drop_all(bind=engine)
+
+models.Base.metadata.create_all(bind=engine)
+
 app = FastAPI(debug=True)
+
+
+# Dependency
+def get_db():
+    Session.configure(autocommit=False, autoflush=False, bind=engine)
+    db = Session()
+    try:
+        yield db
+    finally:
+        db.close()
 
 
 @app.get("/")
@@ -59,3 +79,21 @@ def streamlit_farewell(name: str, age: Union[str, int]):
 @app.get("/dummy_functionality")
 def dummy_func():
     return {"response": "Dummy functionality implemented!"}
+
+
+@app.post("/persist_in_db")
+def persist_in_db(name: str, age: Union[str, int], db: Session = Depends(get_db)):
+    valid, error_message = validate_integer_input(age, "age")
+    if not valid:
+        return {"response": error_message}
+
+    user = schemas.UserCreate(name=name, age=int(age))
+    res = crud.create_user(db, user=user)
+    print(res)
+    return {"response": True, "res": res}
+
+
+@app.get("/get_all_users")
+def get_all_users(db: Session = Depends(get_db)):
+    res = crud.get_users(db)
+    return {"response": True, "res": res}
