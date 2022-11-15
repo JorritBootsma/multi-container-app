@@ -47,7 +47,7 @@ if st.button("Persist my details in the database!"):
     else:
         st.error("Something went wrong!")
 
-if st.button("Request information from database!"):
+if st.button("Request information from the database!"):
     url_suffix = "get_all_users"
     response = requests.get(BASE_URL+url_suffix)
     st.write(response.json())
