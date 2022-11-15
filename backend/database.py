@@ -19,19 +19,19 @@ engine = create_engine(conn_string)
 # Initialise session class
 Session = sessionmaker()
 
-all_tables = engine.execute(
-    """
-             SELECT
-                 table_schema || '.' || table_name
-             FROM
-                 information_schema.tables
-             WHERE
-                 table_type = 'BASE TABLE'
-             AND
-                 table_schema NOT IN ('pg_catalog', 'information_schema');
-             """
-).fetchall()
-
-print(len(all_tables))
-table_names = [tables_info[0] for tables_info in all_tables]
-print(table_names)
+# all_tables = engine.execute(
+#     """
+#              SELECT
+#                  table_schema || '.' || table_name
+#              FROM
+#                  information_schema.tables
+#              WHERE
+#                  table_type = 'BASE TABLE'
+#              AND
+#                  table_schema NOT IN ('pg_catalog', 'information_schema');
+#              """
+# ).fetchall()
+#
+# print(len(all_tables))
+# table_names = [tables_info[0] for tables_info in all_tables]
+# print(table_names)

@@ -1,3 +1,4 @@
+import os
 from typing import Union
 from fastapi import Depends, FastAPI
 
@@ -7,11 +8,18 @@ import schemas
 from database import Session, engine
 from functions import get_greeting, get_farewell, validate_integer_input
 
-# Drop all tables if present
-# print(Base.metadata.tables.keys())
-# Base.metadata.drop_all(bind=engine)
+testing = "False"
+try:
+    testing = os.environ["TESTING"]
+except KeyError:
+    pass
 
-models.Base.metadata.create_all(bind=engine)
+if not eval(testing):
+    # Drop all tables if present
+    # print(Base.metadata.tables.keys())
+    # Base.metadata.drop_all(bind=engine)
+
+    models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(debug=True)
 

@@ -21,6 +21,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      TESTING: "True"
     defaults:
       run:
         working-directory: ./backend
