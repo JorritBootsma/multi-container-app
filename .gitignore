@@ -2,3 +2,6 @@
 __pycache__/
 *.pyc
 Archive/
+
+# Ignore local docker-compose file
+docker-compose-local.yml
