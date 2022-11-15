@@ -1,8 +1,4 @@
-import os
-
 from functions import validate_integer_input
-
-os.environ["testing"] = "True"
 
 
 def test_integer_as_string():
