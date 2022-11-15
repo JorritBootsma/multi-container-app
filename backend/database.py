@@ -20,7 +20,7 @@ engine = create_engine(conn_string)
 Session = sessionmaker()
 
 all_tables = engine.execute(
-             """
+    """
              SELECT
                  table_schema || '.' || table_name
              FROM
@@ -30,10 +30,8 @@ all_tables = engine.execute(
              AND
                  table_schema NOT IN ('pg_catalog', 'information_schema');
              """
-            ).fetchall()
+).fetchall()
 
 print(len(all_tables))
 table_names = [tables_info[0] for tables_info in all_tables]
 print(table_names)
-
-
