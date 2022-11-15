@@ -23,6 +23,10 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TESTING: "True"
+      DB_SERVER: ${{ secrets.DB_SERVER }}
+      DB_USER: ${{ secrets.DB_USER }}
+      DB_NAME: ${{ secrets.DB_NAME }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
     defaults:
       run:
         working-directory: ./backend
