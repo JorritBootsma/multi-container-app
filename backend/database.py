@@ -14,9 +14,9 @@ password = os.environ["DB_PASSWORD"]
 database = os.environ["DB_NAME"]
 conn_string = f"postgresql+psycopg2://{user}:{password}@{server}/{database}"
 
-print('-----')
+print("-----")
 print(conn_string)
-print('-----')
+print("-----")
 
 # Create engine
 engine = create_engine(conn_string)
